@@ -176,6 +176,21 @@ src="https://www.facebook.com/tr?id=2013671432568539&ev=PageView&noscript=1"/></
   }
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(15,23,42,.55)}
   .btn:focus-visible,.wordmark:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+  /* ---------- booking ---------- */
+  .booking{padding:74px 0 10px;text-align:center;scroll-margin-top:20px}
+  .book-head{
+    font-weight:800;letter-spacing:-.025em;line-height:1.1;
+    font-size:clamp(1.7rem,4.6vw,2.4rem);
+  }
+  .book-sub{color:var(--muted);margin:12px auto 32px;max-width:470px}
+  .cal-shell{
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:10px;overflow:hidden;
+    box-shadow:0 18px 44px -22px rgba(15,23,42,.28);
+  }
+  #my-cal-inline{width:100%;overflow:hidden}
+  @media (max-width:520px){.cal-shell{padding:4px;border-radius:13px}}
+
   footer{
     text-align:center;color:var(--muted);
     font-size:.82rem;padding:26px 0 44px;
@@ -186,7 +201,7 @@ src="https://www.facebook.com/tr?id=2013671432568539&ev=PageView&noscript=1"/></
 <body>
 
 <header class="wrap r1">
-  <a class="wordmark" href="https://brechtland.com"><img src="logo.png" alt="" onerror="this.style.display='none'">brechtland</a>
+  <a class="wordmark" href="https://brechtland.com"><img src="logo.png" alt="" onerror="this.style.display='none'">brechtland<span>.</span></a>
 </header>
 
 <main class="wrap">
@@ -210,6 +225,29 @@ src="https://www.facebook.com/tr?id=2013671432568539&ev=PageView&noscript=1"/></
         allowfullscreen></iframe>
     </div>
   </div>
+
+  <section class="booking" id="book">
+    <h2 class="book-head">Pick your time.</h2>
+    <p class="book-sub">Thirty minutes. I reveal the whole site live and you tell me what to change.</p>
+    <div class="cal-shell">
+      <div id="my-cal-inline"></div>
+    </div>
+  </section>
+
+  <script>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", { origin: "https://cal.com" });
+    Cal("inline", {
+      elementOrSelector: "#my-cal-inline",
+      calLink: "brechtland/website-review-call",
+      layout: "month_view"
+    });
+    Cal("ui", {
+      styles: { branding: { brandColor: "#EA580C" } },
+      hideEventTypeDetails: false,
+      layout: "month_view"
+    });
+  </script>
 
   <section class="steps">
     <h2>Before our call</h2>
@@ -245,7 +283,8 @@ src="https://www.facebook.com/tr?id=2013671432568539&ev=PageView&noscript=1"/></
 
   <section class="talk">
     <p>Questions before the call?</p>
-    <a class="btn" href="sms:+19895011397">Text Tyler</a>
+    <!-- TODO: replace +10000000000 with your real number before deploying -->
+    <a class="btn" href="sms:+10000000000">Text Tyler</a>
   </section>
 
 </main>
